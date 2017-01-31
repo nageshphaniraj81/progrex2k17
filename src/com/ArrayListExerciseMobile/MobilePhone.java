@@ -20,7 +20,7 @@ public class MobilePhone {
     public void modifyContacts(String OldName,String newName, String newContact){
         int Position = 0;
         for(int i=0;i<contactslist.size();i++){
-            if (contactslist.get(i).getName()==OldName){
+            if (new String(contactslist.get(i).getName()).equals(OldName)){
                 Position = i;
             }
         }
@@ -33,7 +33,7 @@ public class MobilePhone {
         for(int i=0;i<contactslist.size();i++){
             System.out.println("Contact "+i+" is :"+contactslist.get(i).getName());
             System.out.println("Contact to be removed is :"+contactName);
-            if (contactslist.get(i).getName() == contactName){
+            if (new String(contactslist.get(i).getName()).equals(contactName)){
                 Position = i;
                 contactslist.remove(Position);
                 System.out.println("Contact "+contactName+" removed from the contact list");
@@ -44,12 +44,14 @@ public class MobilePhone {
 
     public String findContacts(String searchItem){
         int Position = 0;
+        String returnValue = null;
         for(int i=0;i<contactslist.size();i++){
-            if (contactslist.get(i).getName()==searchItem){
+            if (new String(contactslist.get(i).getName()).equals(searchItem)){
                 Position = i;
+                returnValue = contactslist.get(Position).getContacts();
             }
         }
-        return contactslist.get(Position).getContacts();
+        return returnValue;
     }
 
 }
